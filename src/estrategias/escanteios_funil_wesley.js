@@ -81,12 +81,13 @@ async function realizarApostaEscanteio(evento, linha, id, n_apostas) {
     let encontrou_time = false;
     let encontrou_mercado = false;
     
-   let driver = await new Builder().usingServer("http://selenium-"+user+":4444/wd/hub").forBrowser("firefox").build();
+   let driver = await new Builder().usingServer("http://selenium-wesleyvieira12:4444/wd/hub").forBrowser("firefox").build();
     // let driver = await new Builder().forBrowser("firefox").build();
     console.log("1");
     await driver.manage().setTimeouts( { implicit: 10000 } );
+    await driver.sleep(4000);
     await driver.get("https://www.bet365.com");
-    await driver.findElement(By.className("hm-MainHeaderRHSLoggedOutWide_Login")).click();
+    await driver.findElement(By.xpath("/html/body/div/div/div[1]/div/div[2]/div[4]/div[3]/div")).click();
     console.log("user: "+user);
     await driver.findElement(By.xpath("//input[@type='text']")).sendKeys(user+ Key.TAB);
     console.log("3");
@@ -145,8 +146,9 @@ async function realizarApostaEscanteio(evento, linha, id, n_apostas) {
                 await driver.quit();
                 return true;
                 } else {
-                  console.log("ERRO: Linha na bet365: "+linha_bet365 + " Linha:"+linha);
-                  enviarMsg("🚫 ERRO: Linha na bet365: "+linha_bet365 + " Linha:"+linha+" 🚫",CHAT_DO_TELEGRAM);
+                  await Bet.findOneAndDelete(id);
+                  console.log("ID:"+id+"ERRO: Linha na bet365: "+linha_bet365 + " Linha:"+linha+"\nJogo: "+evento.home.name+" x "+evento.away.name);
+                  enviarMsg("🚫 ERRO: Linha na bet365: "+linha_bet365 + " Linha:"+linha+"\nJogo: "+evento.home.name+" x "+evento.away.name,CHAT_DO_TELEGRAM);
                 }
                 await driver.sleep(10000);
                 await driver.quit();
@@ -155,8 +157,9 @@ async function realizarApostaEscanteio(evento, linha, id, n_apostas) {
             }
             if(!encontrou_mercado){
               await Bet.findOneAndDelete(id);
-              console.log("Não encontrou o mercado");
-              enviarMsg("🚫 Não encontrou o mercado 🚫",CHAT_DO_TELEGRAM);
+              
+              console.log("ID:"+id+"Não encontrou o mercado\nJogo: "+evento.home.name+" x "+evento.away.name);
+              enviarMsg("🚫 Não encontrou o mercado \nJogo: "+evento.home.name+" x "+evento.away.name,CHAT_DO_TELEGRAM);
             }
             await driver.quit();
             return true;
@@ -165,8 +168,8 @@ async function realizarApostaEscanteio(evento, linha, id, n_apostas) {
         }
         if(!encontrou_time){
           await Bet.findOneAndDelete(id);
-          console.log("Não encontrou o time");
-          enviarMsg("🚫 Não encontrou o time 🚫",CHAT_DO_TELEGRAM);
+          console.log("ID:"+id+"Não encontrou o time\nJogo: "+evento.home.name+" x "+evento.away.name);
+          enviarMsg("🚫 Não encontrou o time \nJogo: "+evento.home.name+" x "+evento.away.name,CHAT_DO_TELEGRAM);
         }
         await driver.quit();
         return true;

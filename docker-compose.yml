@@ -14,30 +14,30 @@ services:
         - "3000:3000"
       networks:
         - autobet
-##################################################
-#            AUTOBET WESLEY                      #
-##################################################
-    autobet-wesley:
-      image: node:latest
-      command: node src/estrategias/escanteios_funil_wesley.js
-      working_dir: /autobet
-      volumes:
-        - .:/autobet
-      restart: always
-      networks:
-        - autobet
-##################################################
-#            AUTOBET ARMANDO                     #
-##################################################
-    autobet-armando:
-      image: node:latest
-      command: node src/estrategias/escanteios_funil_armando.js
-      working_dir: /autobet
-      volumes:
-        - .:/autobet
-      restart: always
-      networks:
-        - autobet
+# ##################################################
+# #            AUTOBET WESLEY                      #
+# ##################################################
+#     autobet-wesley:
+#       image: node:latest
+#       command: node src/estrategias/escanteios_funil_wesley.js
+#       working_dir: /autobet
+#       volumes:
+#         - .:/autobet
+#       restart: always
+#       networks:
+#         - autobet
+# ##################################################
+# #            AUTOBET ARMANDO                     #
+# ##################################################
+#     autobet-armando:
+#       image: node:latest
+#       command: node src/estrategias/escanteios_funil_armando.js
+#       working_dir: /autobet
+#       volumes:
+#         - .:/autobet
+#       restart: always
+#       networks:
+#         - autobet
 ##################################################
 #                 SUPERVISOR                     #
 ##################################################
@@ -62,18 +62,18 @@ services:
         - "4444:4444"     
       networks:
         - autobet
-##################################################
-#                 SELENIUM ARMANDO               #
-##################################################
-    selenium-armandomoura:
-      image: selenium/standalone-firefox
-      restart: always
-      volumes:
-        - /dev/shm2:/dev/shm
-      ports:
-        - "4445:4444"     
-      networks:
-        - autobet
+# ##################################################
+# #                 SELENIUM ARMANDO               #
+# ##################################################
+#     selenium-armandomoura:
+#       image: selenium/standalone-firefox
+#       restart: always
+#       volumes:
+#         - /dev/shm2:/dev/shm
+#       ports:
+#         - "4445:4444"     
+#       networks:
+#         - autobet
 ##################################################
 #                 MONGODB                        #
 ##################################################
