@@ -4,6 +4,7 @@ const io = require("socket.io-client");
 const TOKEN = "23507-XSPGIiL7lO3DWL";
 const Bet = require("./models/bet");
 const DEBUGAR = false;
+const ODD = 1.6;
 
 function sleep(milliseconds) {
   console.log("Entrou no sleep");
