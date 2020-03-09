@@ -16,6 +16,7 @@
     "fetch": "^1.1.0",
     "mongoose": "^5.9.2",
     "node-fetch": "^2.6.0",
+    "puppeteer": "^2.1.1",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",

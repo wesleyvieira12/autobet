@@ -50,18 +50,18 @@ services:
         - "9001:9001"
       networks:
         - autobet
-##################################################
-#                 SELENIUM WESLEY                #
-##################################################
-    selenium-wesleyvieira12:
-      image: selenium/standalone-firefox
-      restart: always
-      volumes:
-        - /dev/shm:/dev/shm
-      ports:
-        - "4444:4444"     
-      networks:
-        - autobet
+# ##################################################
+# #                 SELENIUM WESLEY                #
+# ##################################################
+#     selenium-wesleyvieira12:
+#       image: selenium/standalone-firefox
+#       restart: always
+#       volumes:
+#         - /dev/shm:/dev/shm
+#       ports:
+#         - "4444:4444"     
+#       networks:
+#         - autobet
 # ##################################################
 # #                 SELENIUM ARMANDO               #
 # ##################################################
